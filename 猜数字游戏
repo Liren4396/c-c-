@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include <stdlib.h>
+void menu() {
+	printf("-   1 到 100 之间的猜数字游戏   -\n");
+	printf("------------猜数字游戏-----------\n");
+	printf("*********************************\n");
+	printf("*****       1.新游戏        *****\n");
+	printf("*****       2.退出游戏      *****\n");
+	printf("*********************************\n");
+	printf("---------------------------------\n");
+}
+void game() {
+	int number = rand() % 100 + 1;
+	do {
+		printf("请输入数字:->");
+		int a;
+		scanf("%d", &a);
+		if (a < number) {
+			printf("猜小了\n");
+		} 
+		else if (a > number) {
+			printf("猜大了\n");
+		}
+		else {
+			printf("猜对了\n");
+			printf("答案是 %d ！\n", number);
+			break;
+		}
+	} while (number);
+	
+}
+
+int main() {
+	srand((unsigned int) time (NULL));
+	int input = 1;
+	do {
+		int number;
+		menu();
+		printf("请输入是否开始游戏(1/2):->");
+		scanf("%d", &number);
+		switch (number)
+		{
+		case 1:
+			printf("游戏开始\n");
+			game();
+			break;
+		case 2:
+			printf("退出游戏\n");
+			input = 0;
+			break;
+		default:
+			printf("输入数字傻软\n");
+			break;
+		}
+
+	} while (input);
+	return 0;
+}
