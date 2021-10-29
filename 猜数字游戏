@@ -2,6 +2,7 @@
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
+#include <windows.h>
 void menu() {
 	printf("-   1 到 100 之间的猜数字游戏   -\n");
 	printf("------------猜数字游戏-----------\n");
@@ -29,7 +30,9 @@ void game() {
 			break;
 		}
 	} while (number);
-	
+
+	Sleep(5000);
+	system("cls");
 }
 
 int main() {
