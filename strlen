@@ -1,0 +1,14 @@
+int my_strlen(const char* arr) {
+	assert(arr);
+	const char* p = arr;
+	while (*p != '\0') {
+		p++;
+	}
+	return p - arr;
+}
+
+int main() {
+	char arr[] = "abcdefg";
+	int len = my_strlen(arr);
+	printf("%d", len);
+}
