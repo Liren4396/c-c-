@@ -1,0 +1,70 @@
+input : i like beijing.
+output : beijing. like i
+
+一种是交换数组位置的方法，还有一种是二维数组的方法
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <assert.h>
+#include <math.h>
+
+
+//void reserve(int left, int right, char *arr) {
+//    
+//    while (left < right) {
+//        char tmp = arr[left];
+//        arr[left] = arr[right];
+//        arr[right] = tmp;
+//        left++;
+//        right--;
+//    }
+//}
+//
+//int main() {
+//    char arr[100] = "\0";
+//    scanf("%[^\n]%*c", arr);
+//    int left = 0;
+//    int right = strlen(arr) - 1;
+//    reserve(left, right, arr);
+//    while (left < right) {
+//        int j = left;
+//        while (arr[j] != ' ') {
+//            j++;
+//        }
+//        reserve(left, j - 1, arr);
+//        left = j + 1;
+//    }
+//
+//
+//    for (int i = 0; i <= right; i++) {
+//        printf("%c", arr[i]);
+//    }
+//}
+int main() {
+    char arr[100];
+    char words[100][100];
+    scanf("%[^\n]%*c", arr);
+    int row = 0;
+    int j = 0;
+    int i = 0;
+    while (arr[i] != '\0') {
+        if (arr[i] != ' ' && arr[i] != '\0') {
+            words[row][j] = arr[i];
+            j++;
+        }
+        else {
+            words[row][j] = '\0';
+            j = 0;
+            row++;
+        }
+        i++;
+    }
+    words[row][j] = '\0';
+    for (; row >= 0; row--) {
+        printf("%s", words[row]);
+        printf(" ");
+    }
+}
