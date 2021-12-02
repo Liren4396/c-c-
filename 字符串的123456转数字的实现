@@ -1,0 +1,29 @@
+两种方法引发的思考
+1.都是o(n)，但是指针这里会更加不安全一点。这里更推荐下面的一种写法。
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+#define sb 10
+
+//int main() {
+////"123456" -> 123456
+//	char arr[50];
+//	scanf("%s", &arr);
+//	char* p = arr;
+//	for (; *p != '\0'; *p++) {
+//		*p -= 48;
+//		printf("%d ", *p);
+//	}
+//}
+
+int main() {
+	char arr[50];
+	scanf("%s", &arr);
+	for (int i = 0; *(i + arr) != '\0'; i++) {
+		*(i + arr) -= 48;
+		printf("%d", *(i + arr));
+	}
+
+}
