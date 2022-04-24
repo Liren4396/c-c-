@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "minesweeper.h"
+#include "list.h"
 
 void SeqListInit(SeqList* ps) {
 	ps->a =  NULL;
