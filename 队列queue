@@ -1,0 +1,95 @@
+#include <assert.h>
+typedef int QDataType;
+
+// 链式结构：表示队列 
+typedef struct QListNode
+{
+	struct QListNode* _next;
+	QDataType _data;
+}QNode;
+
+// 队列的结构 
+typedef struct Queue
+{
+	QNode* _front;
+	QNode* _rear;
+}Queue;
+
+// 初始化队列 
+void QueueInit(Queue* q);
+// 队尾入队列 
+void QueuePush(Queue* q, QDataType data);
+// 队头出队列 
+void QueuePop(Queue* q);
+// 获取队列头部元素 
+QDataType QueueFront(Queue* q);
+// 获取队列队尾元素 
+QDataType QueueBack(Queue* q);
+// 获取队列中有效元素个数 
+int QueueSize(Queue* q);
+// 检测队列是否为空，如果为空返回非零结果，如果非空返回0 
+int QueueEmpty(Queue* q);
+// 销毁队列 
+void QueueDestroy(Queue* q);
+
+QNode* BuyQueueNode(QDataType x);
+
+void QueueInit(Queue* q) {
+	q->_front = q->_rear = NULL;
+}
+
+
+QNode* BuyQueueNode(QDataType x)
+{
+	QNode* cur = (QNode*)malloc(sizeof(QNode));
+	cur->_data = x;
+	cur->_next = NULL;
+	return cur;
+}
+
+
+void QueuePush(Queue* q, QDataType data) {
+	QNode* new = BuyQueueNode(data);
+	if (q->_front == NULL) {
+		q->_front = q->_rear = new;
+	}
+	else {
+		q->_rear->_next = new;
+		q->_rear = new;
+	}
+}
+
+void QueuePop(Queue* q) {
+	assert(q->_front);
+	QNode* tmp = q->_front->_next;
+	free(q->_front);
+	q->_front = tmp;
+}
+
+QDataType QueueFront(Queue* q) {
+	return q->_front->_data;
+
+}
+
+QDataType QueueBack(Queue* q) {
+	return q->_rear->_data;
+}
+
+int QueueSize(Queue* q) {
+	int count = 0;
+	for (QNode* cur = q; cur != NULL; cur = cur->_next) {
+		count++;
+	}
+	return count;
+}
+
+int QueueEmpty(Queue* q) {
+	return q->_front == NULL;
+}
+
+void QueueDestroy(Queue* q) {
+	assert(q->_front);
+	while (q->_front != NULL) {
+		QueuePop(q);
+	}
+}
