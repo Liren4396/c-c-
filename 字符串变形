@@ -1,0 +1,56 @@
+
+
+
+
+对于一个长度为 n 字符串，我们需要对它做一些变形。
+
+首先这个字符串中包含着一些空格，就像"Hello World"一样，然后我们要做的是把这个字符串中由空格隔开的单词反序，同时反转每个字符的大小写。
+
+比如"Hello World"变形后就变成了"wORLD hELLO"。
+示例1
+输入：
+"This is a sample",16
+返回值：
+"SAMPLE A IS tHIS"
+示例2
+输入：
+"nowcoder",8
+返回值：
+"NOWCODER"
+示例3
+输入：
+"iOS",3
+返回值：
+"Ios"
+
+
+char* trans(char* s, int n ) {
+    // write code here
+    // 交换大小写
+    for (int i = 0; i < n; i++) {
+        if (s[i] <= 'z' && s[i] >= 'a') {
+            s[i] -= 32;
+        } else if (s[i] <= 'Z' && s[i] >= 'A') {
+            s[i] += 32;
+        }
+    }
+    // 确认区间一个个放进tmp里
+    int end = n - 1;
+    int tmp_start = 0;
+    char tmp[n];
+    for (int i = n - 1; i >= 0; i--) {
+        if (s[i] == ' ') {
+            for (int j = i + 1; j <= end; j++) {
+                tmp[tmp_start++] = s[j];
+            }
+            tmp[tmp_start++] = ' ';
+            end = i - 1;
+        }
+    }
+    for (int i = 0; i <= end; i++) {
+        tmp[tmp_start++] = s[i];
+    }
+    tmp[tmp_start] = '\0';
+    strcpy(s, tmp);
+    return s;
+}
