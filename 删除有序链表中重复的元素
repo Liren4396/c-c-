@@ -1,0 +1,55 @@
+给出一个升序排序的链表，删除链表中的所有重复出现的元素，只保留原链表中只出现一次的元素。
+例如：
+给出的链表为 1 → 2 → 3 → 3 → 4 → 4 → 5, 返回 1 → 2 → 5.
+给出的链表为 1 → 1 → 1 → 2 → 3, 返回 2 → 3.
+
+
+// 建立头节点的单链表解决
+
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param head ListNode类 
+ * @return ListNode类
+ */
+struct ListNode* deleteDuplicates(struct ListNode* head ) {
+    // write code here
+    if (head == NULL) {
+        return NULL;
+    }
+    // 建立头节点的单链表
+    struct ListNode *start = malloc(sizeof(struct ListNode));
+    start->next = head;   
+    struct ListNode *end = start;
+    struct ListNode *prev = prev->next;
+    while (end != NULL) {
+        // 确立重复区域的起始位置
+        // prev为重复的上一个位置
+        // end 为第一个位置
+        while (end->next != NULL && end->val != end->next->val) {
+            prev = end;
+            end = end->next;
+        }
+        // 确立重复区域的末尾
+        // end为末尾的位置
+        while (end->next != NULL && end->val == end->next->val) {
+
+            end = end->next;
+        }
+        // 连接prev和end的末尾的下一个位置
+        if (prev->next != end) {
+            prev->next = end->next;
+        }
+        // end跳出重复区间
+        end = end->next;
+    }
+
+    return start->next;
+}
