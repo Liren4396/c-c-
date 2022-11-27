@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+/*
+template <typename T>
+T Max(T a, T b) {
+	return a > b ? a : b;
+}
+
+int main()
+{
+
+	int  x = 1;
+	int	 y = 2;
+	cout << "max(1, 2) = " << Max(x, y) << endl; //实现参数类型的自动推导
+	cout << "max(1, 2) = " << Max<int>(x, y) << endl;//显示类型调用
+
+	float a = 2.0;
+	float b = 3.0;
+
+	cout << "max(2.0, 3.0) = " << Max(a, b) << endl;
+
+	system("pause");
+	return 0;
+}*/
+/*
+template <typename T>
+T add(T a, T b) {
+	return a + b;
+}
+
+
+template <typename T>
+void Swap(T& a, T& b) {
+	T tmp = a;
+	a = b;
+	b = tmp;
+}
+
+int main() {
+	int a = 1;
+	int b = 3;
+	Swap(a, b);
+	cout << a << endl;
+	cout << b << endl;
+
+	cout << add(1, 20) << endl;
+	cout << add(1.5, 1.15) << endl;
+	cout << add(6.0056, 0.14565655665) << endl;
+}*/
+
+/*
+template <typename T>
+class A
+{
+public:
+	//函数的参数列表使用虚拟类型
+	A(T t = 0) {
+		this->t = t;
+	}
+	//成员函数返回值使用虚拟类型
+	T& getT() {
+		return t;
+	}
+
+private:
+	//成员变量使用虚拟类型
+	T t;
+};
+void printA(A<int>& a) {
+	cout << a.getT() << endl;
+}
+
+
+int main() {
+	A<int> n(10);
+	cout << n.getT() << endl;
+	printA(n);
+	return 0;
+
+}*/
